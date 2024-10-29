@@ -49,6 +49,8 @@ import { Observable, lastValueFrom, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LanguageInterface } from '@mzima-client/sdk';
 import { MatSelectChange } from '@angular/material/select';
+import { MediaFile } from '../../core/interfaces/media';
+import { getFileNameFromUrl } from '../../core/helpers/media-helper';
 
 dayjs.extend(timezone);
 
@@ -251,6 +253,9 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
 
                 const types = [
                   'upload',
+                  'image',
+                  'document',
+                  'audio',
                   'tags',
                   'location',
                   'checkbox',
@@ -354,14 +359,12 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
   }
 
   private async handleUpload(key: string, value: any) {
-    if (!value?.value) return;
+    if (!value[0].value) return;
     try {
-      const uploadObservable = this.mediaService.getById(value.value);
-      const response: any = await lastValueFrom(uploadObservable);
-
+      const response: any = await lastValueFrom(this.mediaService.getById(value[0].value));
       this.form.patchValue({
         [key]: {
-          id: value.value,
+          id: value[0].value,
           caption: response.result.caption,
           photo: response.result.original_file_url,
         },
@@ -369,6 +372,28 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
     } catch (error: any) {
       this.form.patchValue({ [key]: null });
       throw new Error(`Error fetching file: ${error.message}`);
+    }
+  }
+
+  private async handleMedia(key: string, value: MediaFile[]) {
+    if (value?.length === 0) return;
+    try {
+      for (const mediaValue of value) {
+        const media = await lastValueFrom(this.mediaService.getById(mediaValue.value!));
+        mediaValue.url = media.result.original_file_url;
+        mediaValue.caption = media.result.caption;
+        mediaValue.mimeType = media.result.mime;
+        mediaValue.size = media.result.original_file_size;
+        mediaValue.status = 'ready';
+        mediaValue.filename = getFileNameFromUrl(mediaValue.url!);
+      }
+
+      this.form.patchValue({
+        [key]: value,
+      });
+    } catch (error: any) {
+      this.form.patchValue({ [key]: null });
+      throw new Error(`Error fetching files: ${error.message}`);
     }
   }
 
@@ -439,6 +464,9 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
       | 'radio'
       | 'text'
       | 'upload'
+      | 'image'
+      | 'document'
+      | 'audio'
       | 'video'
       | 'textarea'
       | 'relation'
@@ -452,6 +480,9 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
         date: this.handleDate.bind(this),
         datetime: this.handleDateTime.bind(this),
         upload: this.handleUpload.bind(this),
+        image: this.handleMedia.bind(this),
+        document: this.handleMedia.bind(this),
+        audio: this.handleMedia.bind(this),
       };
 
     type InputHandlersOptionsType = 'radio' | 'checkbox';
@@ -616,7 +647,7 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
                         this.form.value[field.key]?.caption,
                       );
                       const response: any = await lastValueFrom(uploadObservable);
-                      value.value = response.result.id;
+                      value.value = [response.result.id];
                     } else {
                       this.maxSizeError = true;
                       throw new Error(`Error uploading file: max size exceed`);
@@ -634,20 +665,32 @@ export class PostEditComponent extends BaseComponent implements OnInit, OnChange
                   } catch (error: any) {
                     throw new Error(`Error deleting file: ${error.message}`);
                   }
-                } else if (originalValue?.value?.mediaCaption !== value.value?.caption) {
+                } else if (originalValue?.value[0].caption !== value.value?.caption) {
                   try {
                     const captionObservable = await this.mediaService.updateCaption(
-                      originalValue.value.id,
+                      originalValue.value[0].id,
                       value.value.caption,
                     );
                     await lastValueFrom(captionObservable);
-                    value.value = originalValue.value.id;
+                    value.value = [originalValue.value[0].id];
                   } catch (error: any) {
                     throw new Error(`Error updating caption: ${error.message}`);
                   }
                 } else {
                   value.value = this.form.value[field.key]?.id || null;
                 }
+                break;
+              case 'image':
+                value.value =
+                  this.form.value[field.key]?.map((formValue: any) => formValue.value) || [];
+                break;
+              case 'audio':
+                value.value =
+                  this.form.value[field.key]?.map((formValue: any) => formValue.value) || [];
+                break;
+              case 'document':
+                value.value =
+                  this.form.value[field.key]?.map((formValue: any) => formValue.value) || [];
                 break;
               default:
                 value.value = this.form.value[field.key] || null;
