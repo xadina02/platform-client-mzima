@@ -1,0 +1,10 @@
+"Post ID",Survey,"Post Status","Created (UTC)","Updated (UTC)","Post Date (UTC)","Contact ID",Contact,"Data Source ID",Source,"Unstructured Description",Title,Description,"Incident Date",Location.lat,Location.lon
+,,,,,,,,,,,,,,,
+102309,"Security Issues",draft,"2023-05-01 12:36:32",,"2023-05-01 12:36:31",,,,,,"test image","test image",,-1.327990826506,36.77038192749
+103047,"Security Issues",draft,"2023-08-24 11:56:18",,"2023-08-24 11:56:18",,,,,,"Test - Security Issues 123","123
+
+456",,-3.3183318839362,36.910071372986
+103172,"Security Issues",draft,"2023-09-27 07:18:41",,"2023-09-27 07:18:41",,,,,,test,"test test",,-1.1864386394452,32.904052734375
+108843,"Security Issues",draft,"2024-07-08 11:50:47",,"2024-07-08 11:50:47",,,,,,Test,test,"2024-07-18 11:50:11",11.436955216143,40.693359375
+108861,"Security Issues",draft,"2024-08-01 15:56:02",,"2024-08-01 15:56:02",,,,,,jatinder-survey-title,jatinder-survey-Description,"2024-08-01 15:49:03",30.900965,75.8572758
+108877,"Security Issues",draft,"2024-08-28 10:07:28",,"2024-08-28 10:07:28",,,,,,"Water Crisis","The people are suffering","2024-08-02 10:06:15",4.0632478978402,9.7096824645996

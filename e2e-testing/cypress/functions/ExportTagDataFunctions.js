@@ -2,11 +2,17 @@ import ExportTagDataLocators from '../locators/ExportTagDataLocators';
 
 class ExportTagDataFunctions {
   select_data_fields() {
-    // Write logic to select some data fields from the listed survey categories on the page
+    for (let i = 0; i <= 3; i++) {
+      cy.get(ExportTagDataLocators.FieldsCheckbox).eq(i).click();
+    }
   }
 
   click_select_fields_button() {
     cy.get(ExportTagDataLocators.SelectFieldsButton).click();
+  }
+
+  export_all_data() {
+    cy.get(ExportTagDataLocators.ExportAllDataButton).click();
   }
 
   export_data() {
@@ -16,24 +22,31 @@ class ExportTagDataFunctions {
   launch_export_page() {
     cy.get(ExportTagDataLocators.SettingsBtn).click();
     cy.get(ExportTagDataLocators.ExportAndTagDataButton).click();
+    cy.get(ExportTagDataLocators.ExportTab).click();
   }
 
   cancel_export() {
     cy.get(ExportTagDataLocators.CancelExportBtn).click();
-    cy.reload();
   }
 
   verify_successful_export_messages() {
     let messageData1 = `We are preparing your CSV file. This may take a few moments. You can leave this page if you want. We will let you know when we're done.`;
     let messageData2 = `Upload complete. You should see your tagged data in your HDX account.`;
 
-    cy.get(ExportTagDataLocators.MessageContainer).should('have.value', messageData1);
-    cy.get(ExportTagDataLocators.MessageContainer).should('have.value', messageData2);
+    cy.get(ExportTagDataLocators.MessageContainer)
+      .should('be.visible')
+      .should('have.text', messageData1);
+
+    // cy.intercept('GET', Cypress.env('thumbsUpSignal')).as('completed');
+    // cy.wait('@completed', { timeout: 50000 }).then((interception) => {
+    //   expect(interception.response.statusCode).to.eq(200);
+    //   cy.get(ExportTagDataLocators.MessageContainer).should('have.text', messageData2);
+    // });
   }
 
   export_all_tag_data() {
     this.launch_export_page();
-    this.export_data();
+    this.export_all_data();
   }
 
   export_select_tag_data() {

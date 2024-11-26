@@ -1,0 +1,23 @@
+"Post ID",Survey,"Post Status","Created (UTC)","Updated (UTC)","Post Date (UTC)","Contact ID",Contact,"Data Source ID",Source,"Unstructured Description",Description,"Incident Date",Location.lat,Location.lon,Title
+,,,,,,,,,,,,,,,
+102309,"Security Issues",draft,"2023-05-01 12:36:32",,"2023-05-01 12:36:31",,,,,,"test image",,-1.327990826506,36.77038192749,
+103047,"Security Issues",draft,"2023-08-24 11:56:18",,"2023-08-24 11:56:18",,,,,,"123
+
+456",,-3.3183318839362,36.910071372986,
+103172,"Security Issues",draft,"2023-09-27 07:18:41",,"2023-09-27 07:18:41",,,,,,"test test",,-1.1864386394452,32.904052734375,
+108843,"Security Issues",draft,"2024-07-08 11:50:47",,"2024-07-08 11:50:47",,,,,,test,"2024-07-18 11:50:11",11.436955216143,40.693359375,
+108861,"Security Issues",draft,"2024-08-01 15:56:02",,"2024-08-01 15:56:02",,,,,,jatinder-survey-Description,"2024-08-01 15:49:03",30.900965,75.8572758,
+108877,"Security Issues",draft,"2024-08-28 10:07:28",,"2024-08-28 10:07:28",,,,,,"The people are suffering","2024-08-02 10:06:15",4.0632478978402,9.7096824645996,
+42484,"Voting Issues",archived,"2022-08-08 20:01:01","2022-08-09 10:15:25","2022-08-08 20:00:59",1790,426949133,1556732225386737664,twitter,,,,,,"CHUKA/IGAMBANG’OMBE residents destroy IEBC materials claiming Rigging"
+102250,"Voting Issues",draft,"2023-04-04 13:14:01",,"2023-04-04 13:14:00",,,,,,,,,,23123
+102955,"Voting Issues",draft,"2023-08-14 13:56:24",,"2023-08-14 13:56:23",,,,,,,,,,"Posts create route test"
+102957,"Voting Issues",draft,"2023-08-15 11:20:10",,"2023-08-15 11:20:09",,,,,,,,,,"testing voting issues survey"
+103127,"Voting Issues",published,"2023-09-12 10:46:51","2024-03-12 03:57:04","2023-09-12 10:46:51",,,,,,,,,,"this post is draft"
+103198,"Voting Issues",archived,"2023-09-27 12:56:57",,"2023-09-27 12:56:57",,,,,,,,,,
+103199,"Voting Issues",archived,"2023-09-27 12:56:57",,"2023-09-27 12:56:57",,,,,,,,,,
+103200,"Voting Issues",archived,"2023-09-27 12:56:57",,"2023-09-27 12:56:57",,,,,,,,,,
+107752,"Voting Issues",published,"2024-03-19 15:00:03","2024-11-15 14:36:46","2024-03-19 15:00:03",,,,,,,,,,"Lots of info"
+107774,"Voting Issues",published,"2024-03-25 11:38:27","2024-03-27 12:00:53","2024-03-25 11:38:27",,,,,,,,,,"Machakos Votes"
+107777,"Voting Issues",draft,"2024-03-26 13:51:39","2024-03-27 12:00:53","2024-03-26 13:51:39",,,,,,,,,,"Narok Votes"
+108879,"Voting Issues",draft,"2024-09-05 12:33:20","2024-09-16 21:39:41","2024-09-05 12:33:20",,,,,,,,,,"one - test edit again"
+108897,"Voting Issues",published,"2024-10-23 09:41:31",,"2024-10-23 09:41:31",,,,,,,,,,"Nigeria vote rigging"
